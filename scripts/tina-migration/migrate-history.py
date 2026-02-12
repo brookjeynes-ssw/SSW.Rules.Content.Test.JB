@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 # Resolve root from script location
 ROOT_DIR = os.path.abspath(os.path.join(__file__, "../../.."))
-HISTORY_PATH = os.path.join(ROOT_DIR, "history.json")
+# HISTORY_PATH = os.path.join(ROOT_DIR, "history.json")
 
 def to_utc(date_str):
     dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
@@ -84,15 +84,15 @@ def update_file(filepath, meta):
     with open(filepath, "w", encoding="utf-8") as f:
         f.write("\n".join(new_lines) + "\n")
 
-# Main
-with open(HISTORY_PATH, "r", encoding="utf-8") as f:
-    history = json.load(f)
+# # Main
+# with open(HISTORY_PATH, "r", encoding="utf-8") as f:
+#     history = json.load(f)
 
-for item in history:
-    mdx_path = to_mdx_path(item["file"])
-    if not mdx_path or not os.path.isfile(mdx_path):
-        continue
-    try:
-        update_file(mdx_path, item)
-    except Exception as e:
-        print(f"Error: {mdx_path} - {e}")
+# for item in history:
+#     mdx_path = to_mdx_path(item["file"])
+#     if not mdx_path or not os.path.isfile(mdx_path):
+#         continue
+#     try:
+#         update_file(mdx_path, item)
+#     except Exceptioakn as e:
+#         print(f"Error: {mdx_path} - {e}")
